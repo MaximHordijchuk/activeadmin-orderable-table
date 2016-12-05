@@ -16,6 +16,6 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'bundler', '~> 1.10'
 
   s.add_runtime_dependency 'activerecord', '>= 3.0.0'
-  s.add_runtime_dependency 'activeadmin', '>= 1.0.0'
+  s.add_runtime_dependency 'activeadmin'
   s.add_runtime_dependency 'sortable-rails', '~> 1.4'
 end

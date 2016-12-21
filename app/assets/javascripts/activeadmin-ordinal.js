@@ -51,12 +51,13 @@
             }
         };
 
-        var sendReorderRequest = function ($element) {
+        var sendReorderRequest = function ($element, ordinals) {
             var url = $element.find('[data-reorder-url]').data('reorder-url');
             $.ajax({
                 url: url,
                 type: 'post',
-                data: { position: $element.find('[data-ordinal]').data('ordinal') },
+                data: { position: $element.find('[data-ordinal]').data('ordinal'),
+                        ordinals: ordinals },
                 error: function(error) { console.log('Reordering failed:', error) }
             });
         };
@@ -85,7 +86,7 @@
                     elements = findElements($container, $firstElement, $lastElement);
                     ordinals = rotateArray(getOrdinals(elements), event.oldIndex < event.newIndex);
                     setOrdinals(elements, ordinals);
-                    sendReorderRequest($movedElement);
+                    sendReorderRequest($movedElement, ordinals);
                 }
             }
         });

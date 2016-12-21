@@ -3,7 +3,13 @@ module ActiveAdmin
     module ControllerActions
       def ordinal
         member_action :reorder, method: :post do
-          resource.insert_at params[:position].to_i
+          position = params[:position].to_i
+          if params[:ordinals]
+            ordinals_scope = params[:ordinals].map { |ordinal| ordinal.to_i }
+            resource.insert_at position, ordinals_scope
+          else
+            resource.insert_at position
+          end
           head 200
         end
       end

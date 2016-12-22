@@ -71,7 +71,7 @@ module ActiveRecord
         end
 
         def check_ordinal_uniqueness
-          if acts_ordinal_value.present? && self.class.find_by("#{acts_ordinal_field}": acts_ordinal_value)
+          if acts_ordinal_value.present? && self.class.where("#{acts_ordinal_field}": acts_ordinal_value).first
             self.errors[acts_ordinal_field] << 'must be unique'
           end
         end

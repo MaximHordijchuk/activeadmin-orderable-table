@@ -6,10 +6,15 @@ module ActiveRecord
       end
 
       module ClassMethods
-        attr_reader :ordinal_field
+        attr_reader :ordinal_field, :starts_from
 
         def acts_as_ordinal(options = {})
           @ordinal_field = options[:ordinal_field] || :ordinal
+          @starts_from = options[:starts_from] || 0
+
+          validates @ordinal_field, presence: true
+          validate :check_ordinal_uniqueness
+          after_initialize :set_defaults
 
           class_eval do
             include ActiveRecord::ActsAs::Ordinal::InstanceMethods
@@ -41,6 +46,10 @@ module ActiveRecord
           self.send(acts_ordinal_field)
         end
 
+        def starts_from
+          self.class.starts_from
+        end
+
         private
 
         def ordinal_range(position)
@@ -59,6 +68,18 @@ module ActiveRecord
 
         def update_ordinals(items, positions)
           items.each_with_index { |item, index| item.update("#{acts_ordinal_field}": positions[index]) }
+        end
+
+        def check_ordinal_uniqueness
+          if acts_ordinal_value.present? && self.class.find_by("#{acts_ordinal_field}": acts_ordinal_value)
+            self.errors[acts_ordinal_field] << 'must be unique'
+          end
+        end
+
+        def set_defaults
+          ordinal_value_prev = self.class.maximum(acts_ordinal_field)
+          ordinal_value_next = (ordinal_value_prev ? ordinal_value_prev + 1 : starts_from)
+          self.send("#{acts_ordinal_field}=", ordinal_value_next) unless acts_ordinal_value
         end
       end
     end

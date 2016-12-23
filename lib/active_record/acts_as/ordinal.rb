@@ -14,7 +14,7 @@ module ActiveRecord
 
           validates @ordinal_field, presence: true
           validate :check_ordinal_uniqueness
-          after_initialize :set_defaults
+          before_validation :set_defaults
 
           class_eval do
             include ActiveRecord::ActsAs::Ordinal::InstanceMethods

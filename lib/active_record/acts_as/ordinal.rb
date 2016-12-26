@@ -27,8 +27,8 @@ module ActiveRecord
           return if position == ordinal # if ordinal haven't changed
 
           # if new position is not occupied just take this ordinal
-          unless self.class.find_by("#{acts_ordinal_field}": position)
-            update("#{acts_ordinal_field}": position)
+          unless self.class.where("#{acts_ordinal_field}": position).first
+            update_attributes("#{acts_ordinal_field}": position)
             return
           end
 
@@ -67,7 +67,10 @@ module ActiveRecord
         end
 
         def update_ordinals(items, positions)
-          items.each_with_index { |item, index| item.update("#{acts_ordinal_field}": positions[index]) }
+          items.each_with_index do |item, index|
+            item.assign_attributes("#{acts_ordinal_field}": positions[index])
+            item.save!(validate: false)
+          end
         end
 
         def check_ordinal_uniqueness
@@ -77,9 +80,11 @@ module ActiveRecord
         end
 
         def set_defaults
-          ordinal_value_prev = self.class.maximum(acts_ordinal_field)
-          ordinal_value_next = (ordinal_value_prev ? ordinal_value_prev + 1 : starts_from)
-          self.send("#{acts_ordinal_field}=", ordinal_value_next) unless acts_ordinal_value
+          unless acts_ordinal_value
+            ordinal_value_prev = self.class.maximum(acts_ordinal_field)
+            ordinal_value_next = (ordinal_value_prev ? ordinal_value_prev + 1 : starts_from)
+            assign_attributes("#{acts_ordinal_field}": ordinal_value_next)
+          end
         end
       end
     end

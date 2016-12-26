@@ -1,26 +1,26 @@
 # Active Admin Ordinal
 
 This gem extends ActiveAdmin so that your index page's table rows can be 
-ordinal via a drag-and-drop interface.
+orderable via a drag-and-drop interface.
 
 ## Usage
 
 ### Add gem to your Gemfile
 
 ```ruby
-gem 'activeadmin-ordinal'
+gem 'activeadmin-orderable'
 ```
 
 ### Include the JavaScript in active_admin.js
 
 ```javascript
 //= require sortable-rails
-//= require activeadmin-ordinal
+//= require activeadmin-orderable
 ```
 
 ### Include the Stylesheet in active_admin.css
 ```css
-//= require activeadmin-ordinal
+//= require activeadmin-orderable
 ```
 
 ### Configure your ActiveRecord model
@@ -30,9 +30,9 @@ rails g migration AddOrdinalToPage ordinal:integer
 rake db:migrate
 ```
 
-Then add following line to model that suppose to be ordinal:
+Then add following line to model that suppose to be orderable:
 ```ruby
-acts_as_ordinal
+acts_as_orderable
 ```
 
 ### Configure your ActiveAdmin Resource
@@ -42,10 +42,10 @@ ActiveAdmin.register Page do
   config.sort_order = 'ordinal_asc'
   config.paginate = false # optional; drag-and-drop across pages is not supported
 
-  ordinal # creates the controller action which handles the ordering
+  orderable # creates the controller action which handles the ordering
 
   index do
-    ordinal_handle_column # inserts a drag handle
+    orderable_handle_column # inserts a drag handle
     # other columns...
   end
 end

@@ -24,7 +24,7 @@ module ActiveAdmin
 
         column '', class: 'activeadmin-ordinal' do |resource|
           reorder_path = resource_path(resource) + '/reorder'
-          content_tag :span, HANDLE, class: 'handle', 'data-reorder-url': reorder_path,
+          content_tag :span, HANDLE, class: 'activeadmin-ordinal-handle', 'data-reorder-url': reorder_path,
                                      'data-ordinal': resource.acts_ordinal_value
         end
       end

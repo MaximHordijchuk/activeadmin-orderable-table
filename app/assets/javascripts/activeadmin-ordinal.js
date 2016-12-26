@@ -1,6 +1,9 @@
 (function($) {
     $(document).ready(function() {
-        $('.handle').closest('tbody').activeAdminOrdinal();
+        var $handle = $('activeadmin-ordinal-handle');
+        if ($handle.length > 0) {
+            $handle.closest('tbody').activeAdminOrdinal();
+        }
     });
 
     $.fn.activeAdminOrdinal = function() {

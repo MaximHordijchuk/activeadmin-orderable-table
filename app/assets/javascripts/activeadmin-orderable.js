@@ -1,6 +1,6 @@
 (function($) {
     $(document).ready(function() {
-        var $handle = $('activeadmin-orderable-handle');
+        var $handle = $('.activeadmin-orderable-handle');
         if ($handle.length > 0) {
             $handle.closest('tbody').activeAdminOrderable();
         }

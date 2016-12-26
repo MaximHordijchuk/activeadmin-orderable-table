@@ -1,4 +1,4 @@
-# Active Admin Ordinal
+# Active Admin Orderable
 
 This gem extends ActiveAdmin so that your index page's table rows can be 
 orderable via a drag-and-drop interface.

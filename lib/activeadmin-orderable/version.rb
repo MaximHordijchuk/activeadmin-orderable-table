@@ -1,5 +1,5 @@
 module Activeadmin
-  module Ordinal
+  module Orderable
     VERSION = '0.0.1'
   end
 end

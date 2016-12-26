@@ -1,6 +1,6 @@
 module ActiveRecord
   module ActsAs
-    module Ordinal
+    module Orderable
       def self.included(base)
         base.extend(ClassMethods)
       end
@@ -8,7 +8,7 @@ module ActiveRecord
       module ClassMethods
         attr_reader :ordinal_field, :starts_from
 
-        def acts_as_ordinal(options = {})
+        def acts_as_orderable(options = {})
           @ordinal_field = options[:ordinal_field] || :ordinal
           @starts_from = options[:starts_from] || 0
 
@@ -17,14 +17,14 @@ module ActiveRecord
           before_validation :set_defaults
 
           class_eval do
-            include ActiveRecord::ActsAs::Ordinal::InstanceMethods
+            include ActiveRecord::ActsAs::Orderable::InstanceMethods
           end
         end
       end
 
       module InstanceMethods
         def insert_at(position, ordinals_scope = nil)
-          return if position == ordinal # if ordinal haven't changed
+          return if position == acts_ordinal_value # if ordinal haven't changed
 
           # if new position is not occupied just take this ordinal
           unless self.class.where("#{acts_ordinal_field}": position).first
@@ -75,7 +75,7 @@ module ActiveRecord
 
         def check_ordinal_uniqueness
           if acts_ordinal_value.present? &&
-             self.class.where("#{acts_ordinal_field}": acts_ordinal_value).where.not(id: id).first
+             self.class.where("#{acts_ordinal_field}": acts_ordinal_value).reject { |record| record == self }.first
             self.errors[acts_ordinal_field] << 'must be unique'
           end
         end

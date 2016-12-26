@@ -1,12 +1,12 @@
 (function($) {
     $(document).ready(function() {
-        var $handle = $('activeadmin-ordinal-handle');
+        var $handle = $('activeadmin-orderable-handle');
         if ($handle.length > 0) {
-            $handle.closest('tbody').activeAdminOrdinal();
+            $handle.closest('tbody').activeAdminOrderable();
         }
     });
 
-    $.fn.activeAdminOrdinal = function() {
+    $.fn.activeAdminOrderable = function() {
         var $container = this;
 
         // Returns all sibling elements between $firstElement and $lastElement

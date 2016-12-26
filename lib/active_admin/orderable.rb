@@ -1,7 +1,7 @@
 module ActiveAdmin
   module Ordinal
     module ControllerActions
-      def ordinal
+      def orderable
         member_action :reorder, method: :post do
           position = params[:position].to_i
           if params[:ordinals]
@@ -18,13 +18,13 @@ module ActiveAdmin
     module TableMethods
       HANDLE = '&#x2195;'.html_safe
 
-      def ordinal_handle_column
+      def orderable_handle_column
         column_name = resource_class.ordinal_field
         return if params[:order] != "#{column_name}_asc" && params[:order] != "#{column_name}_desc"
 
-        column '', class: 'activeadmin-ordinal' do |resource|
+        column '', class: 'activeadmin-orderable' do |resource|
           reorder_path = resource_path(resource) + '/reorder'
-          content_tag :span, HANDLE, class: 'activeadmin-ordinal-handle', 'data-reorder-url': reorder_path,
+          content_tag :span, HANDLE, class: 'activeadmin-orderable-handle', 'data-reorder-url': reorder_path,
                                      'data-ordinal': resource.acts_ordinal_value
         end
       end

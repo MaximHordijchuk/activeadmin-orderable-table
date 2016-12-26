@@ -2,6 +2,6 @@ require 'active_record/base'
 
 module ActiveRecord
   class Base
-    include ActsAs::Ordinal
+    include ActsAs::Orderable
   end
 end

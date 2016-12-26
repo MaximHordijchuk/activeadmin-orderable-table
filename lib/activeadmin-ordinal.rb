@@ -1,6 +1,0 @@
-require 'activeadmin-ordinal/version'
-require 'activeadmin'
-require 'rails/engine'
-require 'active_record/acts_as/ordinal'
-require 'active_record/acts_as'
-require 'active_admin/ordinal'

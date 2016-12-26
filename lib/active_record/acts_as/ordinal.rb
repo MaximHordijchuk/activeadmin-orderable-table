@@ -74,13 +74,14 @@ module ActiveRecord
         end
 
         def check_ordinal_uniqueness
-          if acts_ordinal_value.present? && self.class.where("#{acts_ordinal_field}": acts_ordinal_value).first
+          if acts_ordinal_value.present? &&
+             self.class.where("#{acts_ordinal_field}": acts_ordinal_value).where.not(id: id).first
             self.errors[acts_ordinal_field] << 'must be unique'
           end
         end
 
         def set_defaults
-          unless acts_ordinal_value
+          if acts_ordinal_value.blank?
             ordinal_value_prev = self.class.maximum(acts_ordinal_field)
             ordinal_value_next = (ordinal_value_prev ? ordinal_value_prev + 1 : starts_from)
             assign_attributes("#{acts_ordinal_field}": ordinal_value_next)

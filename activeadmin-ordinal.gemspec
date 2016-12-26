@@ -14,6 +14,10 @@ Gem::Specification.new do |s|
   s.license = 'MIT'
 
   s.add_development_dependency 'bundler', '~> 1.10'
+  s.add_development_dependency 'rspec-rails', '~> 3.5'
+  s.add_development_dependency 'test-unit', '~> 3.0'
+  s.add_development_dependency 'sqlite3', '~> 1.3'
+  s.add_development_dependency 'sass-rails'
 
   s.add_runtime_dependency 'activeadmin'
   s.add_runtime_dependency 'sortable-rails', '~> 1.4'

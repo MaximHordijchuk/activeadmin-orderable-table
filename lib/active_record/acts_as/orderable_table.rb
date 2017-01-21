@@ -1,6 +1,6 @@
 module ActiveRecord
   module ActsAs
-    module Orderable
+    module OrderableTable
       def self.included(base)
         base.extend(ClassMethods)
       end
@@ -8,7 +8,7 @@ module ActiveRecord
       module ClassMethods
         attr_reader :ordinal_field, :starts_from
 
-        def acts_as_orderable(options = {})
+        def acts_as_orderable_table(options = {})
           @ordinal_field = options[:ordinal_field] || :ordinal
           @starts_from = options[:starts_from] || 0
 
@@ -17,7 +17,7 @@ module ActiveRecord
           before_validation :set_defaults
 
           class_eval do
-            include ActiveRecord::ActsAs::Orderable::InstanceMethods
+            include ActiveRecord::ActsAs::OrderableTable::InstanceMethods
           end
         end
       end

@@ -2,11 +2,11 @@
     $(document).ready(function() {
         var $handle = $('.activeadmin-orderable-handle');
         if ($handle.length > 0) {
-            $handle.closest('tbody').activeAdminOrderable();
+            $handle.closest('tbody').activeAdminOrderableTable();
         }
     });
 
-    $.fn.activeAdminOrderable = function() {
+    $.fn.activeAdminOrderableTable = function() {
         var $container = this;
 
         // Returns all sibling elements between $firstElement and $lastElement

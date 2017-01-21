@@ -1,5 +1,5 @@
 module Activeadmin
-  module Orderable
+  module OrderableTable
     VERSION = '0.0.1'
   end
 end

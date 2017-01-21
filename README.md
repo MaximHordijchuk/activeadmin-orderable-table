@@ -1,26 +1,27 @@
-# Active Admin Orderable
+# Active Admin Orderable Table
 
 This gem extends ActiveAdmin so that your index page's table rows can be 
-orderable via a drag-and-drop interface.
+orderable without page reloading via a drag-and-drop interface.
 
 ## Usage
 
 ### Add gem to your Gemfile
 
 ```ruby
-gem 'activeadmin-orderable'
+gem 'sortable-rails'
+gem 'activeadmin-orderable-table'
 ```
 
 ### Include the JavaScript in active_admin.js
 
 ```javascript
 //= require sortable-rails
-//= require activeadmin-orderable
+//= require activeadmin-orderable-table
 ```
 
 ### Include the Stylesheet in active_admin.css
 ```css
-//= require activeadmin-orderable
+//= require activeadmin-orderable-table
 ```
 
 ### Configure your ActiveRecord model
@@ -32,7 +33,7 @@ rake db:migrate
 
 Then add following line to model that suppose to be orderable:
 ```ruby
-acts_as_orderable
+acts_as_orderable_table
 ```
 
 ### Configure your ActiveAdmin Resource

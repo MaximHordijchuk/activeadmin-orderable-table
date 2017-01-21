@@ -1,6 +1,0 @@
-require 'activeadmin-orderable/version'
-require 'activeadmin'
-require 'rails/engine'
-require 'active_record/acts_as/orderable'
-require 'active_record/acts_as'
-require 'active_admin/orderable'

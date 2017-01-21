@@ -10,5 +10,5 @@ ActiveRecord::Schema.define(:version => 1) do
 end
 
 class Entity < ActiveRecord::Base
-  acts_as_orderable
+  acts_as_orderable_table
 end

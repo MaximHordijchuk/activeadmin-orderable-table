@@ -1,4 +1,4 @@
-require 'activeadmin-orderable'
+require 'activeadmin-orderable-table'
 require 'db_helper'
 require 'rspec/rails'
 require 'support/utilities'

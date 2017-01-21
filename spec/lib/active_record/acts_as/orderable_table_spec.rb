@@ -6,7 +6,7 @@ TEST_ENTITIES_COUNT = 10
 # should be > 1 and <= TEST_ENTITIES_COUNT
 TEST_ENTITIES_SCOPE_COUNT = 6
 
-RSpec.describe ActiveRecord::ActsAs::Orderable do
+RSpec.describe ActiveRecord::ActsAs::OrderableTable do
   describe 'without options' do
     let(:random_ordinal) { Random.new.rand(RANDOM_ORDINAL_MAX) }
 

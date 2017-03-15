@@ -18,7 +18,7 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'test-unit', '~> 3.0'
   s.add_development_dependency 'sqlite3', '~> 1.3'
   s.add_development_dependency 'sass-rails'
+  s.add_development_dependency 'activerecord'
 
-  s.add_runtime_dependency 'activeadmin'
   s.add_runtime_dependency 'sortable-rails', '~> 1.4'
 end

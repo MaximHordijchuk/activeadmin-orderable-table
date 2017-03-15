@@ -1,5 +1,6 @@
 require 'activeadmin-orderable-table/version'
-require 'activeadmin'
+require 'active_record'
+require 'active_record/railtie'
 require 'rails/engine'
 require 'active_record/acts_as/orderable_table'
 require 'active_record/acts_as'
